@@ -1,7 +1,7 @@
 import requests
 import os
-import io
 from dotenv import load_dotenv
+from contextlib import contextmanager
 
 load_dotenv()
 
@@ -11,30 +11,27 @@ DOWNLOAD_DIRECTORY = f"{BASE_PATH}\data"
 YEARS_AVALIABLE = ["2023", "2024", "2025"]
 
 
+@contextmanager
 def base_extraction(
-    zip_file_name: str, file_count: int = 1, has_file_count: bool = False
+    year: int,
+    zip_file_name: str,
+    file_count: int = 1,
+    has_file_count: bool = False,
 ):
-    extracted_data_dict = {}
-    for year in YEARS_AVALIABLE:
-        monthly_extracted_data = []
-        for month in range(1, 13):
-            for counter in range(file_count):
-                formatted_month = f"{month:02d}"
-                if has_file_count:
-                    file_name = f"{zip_file_name}{counter}"
-                else:
-                    file_name = zip_file_name
-                response = requests.get(
-                    f"{CNPJ_DATA_URL}/{year}-{formatted_month}/{file_name}.zip"
-                )
-                try:
-                    monthly_extracted_data.append(io.BytesIO(response.content))
-                except Exception as e:
-                    raise Exception(
-                        f"Unable to transform .zip due to an unexcepted error: {e}"
-                    ) from e
-        extracted_data_dict[year] = monthly_extracted_data
-    return extracted_data_dict
+    for month in range(1, 13):
+        for counter in range(file_count):
+            formatted_month = f"{month:02d}"
+            if has_file_count:
+                file_name = f"{zip_file_name}{counter}"
+            else:
+                file_name = zip_file_name
+            request_url = f"{CNPJ_DATA_URL}/{year}-{formatted_month}/{file_name}.zip"
+            request = requests.get(request_url, stream=True)
+            try:
+                request.raise_for_status()
+                yield request.raw
+            finally:
+                request.close()
 
 
 def extract_cnaes():

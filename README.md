@@ -1,7 +1,7 @@
 # CNPJ ETL
 
 > [!NOTE]  
-> This idea was inspired by a [https://www.linkedin.com/feed/update/urn:li:activity:7408660461782618112?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7408660461782618112%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29](LinkedIn post) that provides valuable resources for hands-on practice of data engineering concepts.
+> The idea for this project was copied from this [https://www.linkedin.com/feed/update/urn:li:activity:7408660461782618112?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7408660461782618112%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29](LinkedIn post) that provides valuable resources for hands-on practice of data engineering concepts.
 
 **The Brazilian Federal Revenue Service (Receita Federal)** provides free public data on **50+ million Brazilian companies (CNPJs)**. These are **tens of GBs of CSV files** that must be:
 

@@ -1,2 +1,1 @@
-IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'begginer')
-CREATE DATABASE [beginner];
+CREATE DATABASE gov_cnpj_etl;
