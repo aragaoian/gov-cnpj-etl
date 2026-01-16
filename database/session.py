@@ -2,25 +2,30 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 
+"""
+    TODO
+    1. remove database_name, should go inside .env
+"""
+
 load_dotenv()
 
 POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 POSTGRES_SCHEMA = os.getenv("POSTGRES_SCHEMA")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST")
 POSTGRES_PORT = os.getenv("HOST_PORT")
 
 
 class DatabaseManager:
-    def __init__(self, database_name: str = "postgres"):
-        self.database_name = database_name
+    def __init__(self):
         self.connection = None
         self.cursor = None
 
     def open_connection(self):
         try:
             conn = psycopg2.connect(
-                dbname=self.database_name,
+                dbname=POSTGRES_DB,
                 user=POSTGRES_USER,
                 password=POSTGRES_PASSWORD,
                 host=POSTGRES_HOST,

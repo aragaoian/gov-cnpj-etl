@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS staging.cnaes (
-    code INTEGER PRIMARY KEY,
-    activity_name TEXT,
+    code TEXT,
+    activity_name TEXT
 )
 
 CREATE TABLE IF NOT EXISTS {SCHEMA}.cnaes (
