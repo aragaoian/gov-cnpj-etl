@@ -1,0 +1,21 @@
+TRUNCATE TABLE staging.cnaes;
+TRUNCATE TABLE staging.empresas;
+TRUNCATE TABLE staging.estabelecimentos;
+TRUNCATE TABLE staging.motivos;
+TRUNCATE TABLE staging.municipios;
+TRUNCATE TABLE staging.naturezas;
+TRUNCATE TABLE staging.paises;
+TRUNCATE TABLE staging.qualificacoes;
+TRUNCATE TABLE staging.simples;
+TRUNCATE TABLE staging.socios;
+
+TRUNCATE TABLE beginner.cnaes;
+TRUNCATE TABLE beginner.empresas;
+TRUNCATE TABLE beginner.estabelecimentos;
+TRUNCATE TABLE beginner.motivos;
+TRUNCATE TABLE beginner.municipios;
+TRUNCATE TABLE beginner.naturezas;
+TRUNCATE TABLE beginner.paises;
+TRUNCATE TABLE beginner.qualificacoes;
+TRUNCATE TABLE beginner.simples;
+TRUNCATE TABLE beginner.socios;

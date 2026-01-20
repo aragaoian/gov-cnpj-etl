@@ -1,8 +1,12 @@
-from beginner.load_data import run_insertions_staging
-
-YEARS_AVALIABLE = [2023, 2024, 2025]
+from beginner.load_data import run_load
+from beginner.transform_data import run_transform
+from datetime import datetime
 
 
 def run_beginner():
-    for year in YEARS_AVALIABLE:
-        run_insertions_staging(year)
+    now = datetime.now()
+    year = now.year
+    month = now.month
+
+    run_load(year, month)
+    # run_transform()
