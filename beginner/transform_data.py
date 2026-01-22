@@ -1,31 +1,44 @@
 from database.session import DatabaseManager
+from pathlib import Path
 import os
 
-"""
-TODO
-1. Move from staging to real table
-2. delete duplicates
-3. insert year
-"""
+
+BASE_DIRECTORY = os.getcwd()
+TRANSFORM_PATH = "beginner/sql/transform"
+CONSTRAINTS_PATH = "database/constraints"
 
 TRANSFORMS = {
-    "cnaes": "transform/sql/cnaes.sql",
-    "empresas": "transform/sql/empresas.sql",
-    "estabelecimentos": "transform/sql/estabelecimentos.sql",
-    "socios": "transform/sql/socios.sql",
-    "simples": "transform/sql/simples.sql",
-    "paises": "transform/sql/paises.sql",
-    "municipios": "transform/sql/municipios.sql",
-    "naturezas_juridicas": "transform/sql/naturezas_juridicas.sql",
-    "qualificacoes_socios": "transform/sql/qualificacoes_socios.sql",
-    "motivos": "transform/sql/motivos.sql",
+    "cnaes": f"{TRANSFORM_PATH}/cnaes.sql",
+    "empresas": f"{TRANSFORM_PATH}/empresas.sql",
+    "estabelecimentos": f"{TRANSFORM_PATH}/estabelecimentos.sql",
+    "simples": f"{TRANSFORM_PATH}/simples.sql",
+    "socios": f"{TRANSFORM_PATH}/socios.sql",
+    "paises": f"{TRANSFORM_PATH}/paises.sql",
+    "municipios": f"{TRANSFORM_PATH}/municipios.sql",
+    "naturezas_juridicas": f"{TRANSFORM_PATH}/naturezas_juridicas.sql",
+    "qualificacoes_socios": f"{TRANSFORM_PATH}/qualificacoes_socios.sql",
+    "motivos": f"{TRANSFORM_PATH}/motivos.sql",
 }
-BASE_DIRECTORY = os.getcwd()
+CONSTRAINTS = {
+    "cnaes": None,
+    "empresas": f"{CONSTRAINTS_PATH}/empresas_constraints.sql",
+    "estabelecimentos": f"{CONSTRAINTS_PATH}/estabelecimentos_constraints.sql",
+    "simples": f"{CONSTRAINTS_PATH}/simples_constraints.sql",
+    "socios": f"{CONSTRAINTS_PATH}/socios_constraints.sql",
+    "paises": None,
+    "municipios": None,
+    "naturezas_juridicas": None,
+    "qualificacoes_socios": None,
+    "motivos": None,
+}
 
 
-def move_delete_duplicates(table_name: str):
-    sql_file = TRANSFORMS[table_name]
-    query = (f"{BASE_DIRECTORY}/{sql_file}").read_text(encoding="utf-8")
+def read_sql_file(path_dict: dict, table_name: str) -> None:
+    sql_file = path_dict[table_name]
+    if not sql_file:
+        return
+    path = Path(f"{BASE_DIRECTORY}/{sql_file}")
+    query = path.read_text(encoding="utf-8")
 
     with DatabaseManager() as cursor:
         cursor.execute(query)
@@ -33,4 +46,7 @@ def move_delete_duplicates(table_name: str):
 
 def run_transform():
     for table_name in TRANSFORMS:
-        move_delete_duplicates(table_name)
+        print(f"Moving {table_name} data from staging to cannonical")
+        read_sql_file(TRANSFORMS, table_name)
+        print(f"Creating constraints for {table_name}")
+        read_sql_file(CONSTRAINTS, table_name)

@@ -1,4 +1,4 @@
-INSERT INTO beginner.socios (
+INSERT INTO socios (
     cnpj_basico,
     identificador_socio,
     nome_socio,
@@ -15,14 +15,14 @@ SELECT DISTINCT
     cnpj_basico::CHAR(8),
     identificador_socio::SMALLINT,
     nome_socio::TEXT,
-    cpf_cnpj_socio::TEXT,
-    qualificacao_socio::INTEGER,
-    data_entrada_sociedade::DATE,
-    pais::INTEGER,
-    representante_legal::TEXT,
-    nome_representante::TEXT,
-    qualificacao_representante::INTEGER,
-    faixa_etaria::SMALLINT
+    NULLIF(cpf_cnpj_socio, '')::TEXT,
+    NULLIF(qualificacao_socio, '')::INTEGER,
+    NULLIF(data_entrada_sociedade, '')::DATE,
+    NULLIF(pais, '')::INTEGER,
+    NULLIF(representante_legal, '')::TEXT,
+    NULLIF(nome_representante, '')::TEXT,
+    NULLIF(qualificacao_representante, '')::INTEGER,
+    NULLIF(faixa_etaria, '')::SMALLINT
 FROM staging.socios
 WHERE cnpj_basico IS NOT NULL
   AND identificador_socio IS NOT NULL

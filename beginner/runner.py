@@ -8,5 +8,5 @@ def run_beginner():
     year = now.year
     month = now.month
 
-    run_load(year, month)
-    # run_transform()
+    # run_load(year, month)
+    run_transform()

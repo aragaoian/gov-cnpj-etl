@@ -55,12 +55,12 @@ def run_load(year: int, month: int) -> None:
     4. socios
     """
     insert_data_staging("cnaes", year, month)
-    # insert_data_staging("empresas", year, month, 10, True)
-    # insert_data_staging("estabelecimentos", year, month, 10, True)
+    insert_data_staging("empresas", year, month, 10, True)
+    insert_data_staging("estabelecimentos", year, month, 10, True)
     insert_data_staging("motivos", year, month)
     insert_data_staging("municipios", year, month)
     insert_data_staging("naturezas", year, month)
     insert_data_staging("paises", year, month)
     insert_data_staging("qualificacoes", year, month)
-    # insert_data_staging("simples", year, month)
-    # insert_data_staging("socios", year, month, 10, True)
+    insert_data_staging("simples", year, month)
+    insert_data_staging("socios", year, month, 10, True)

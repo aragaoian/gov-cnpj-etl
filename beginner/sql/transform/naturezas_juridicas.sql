@@ -1,7 +1,7 @@
-INSERT INTO beginner.naturezas (codigo, descricao)
+INSERT INTO naturezas (codigo, descricao)
 SELECT DISTINCT
     codigo::INTEGER,
-    descricao::TEXT
+    NULLIF(UPPER(descricao), '')::TEXT
 FROM staging.naturezas
 WHERE codigo IS NOT NULL
 ON CONFLICT (codigo) DO UPDATE

@@ -20,9 +20,9 @@
 
 Build a script that downloads and loads the data into PostgreSQL/MySQL. Answer using SQL:
 
-✓ How many active companies per state?
-✓ Top 10 most common CNAE codes
-✓ Distribution by company size (MEI, ME, EPP)
+✓ How many active companies per state? <br>
+✓ Top 10 most common CNAE codes <br>
+✓ Distribution by company size (MEI, ME, EPP) <br>
 
 **Suggested skills:** Python, SQL, Pandas
 
@@ -30,10 +30,10 @@ Build a script that downloads and loads the data into PostgreSQL/MySQL. Answer u
 
 Create an automated ETL pipeline:
 
-✓ Scheduled incremental downloads
-✓ Data integrity and duplication validation
-✓ Dimensional modeling (star schema)
-✓ Basic dashboard in Metabase / Superset / Power BI / Tableau
+✓ Scheduled incremental downloads  <br>
+✓ Data integrity and duplication validation <br>
+✓ Dimensional modeling (star schema) <br>
+✓ Basic dashboard in Metabase / Superset / Power BI / Tableau <br>
 
 **Suggested skills:** Airflow, dbt, DVC, Docker, AWS S3, AWS RDS
 
@@ -41,11 +41,11 @@ Create an automated ETL pipeline:
 
 Build a complete data engineering architecture:
 
-✓ Distributed ingestion (Spark / Dask / Trino)
-✓ Data lake built with Medallion architecture
-✓ Metadata catalog for documentation
-✓ REST API for queries (you could even charge for this!)
-✓ Monitoring and data quality
-✓ Full CI/CD (data deployed to production)
+✓ Distributed ingestion (Spark / Dask / Trino) <br>
+✓ Data lake built with Medallion architecture <br>
+✓ Metadata catalog for documentation <br>
+✓ REST API for queries (you could even charge for this!) <br>
+✓ Monitoring and data quality <br>
+✓ Full CI/CD (data deployed to production) <br>
 
 **Suggested skills:** Spark, Kubernetes, Terraform, FastAPI, Great Expectations, AWS API Gateway

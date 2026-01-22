@@ -5,8 +5,10 @@ requires-python = ">=3.10"
 dependencies = [
     "apache-airflow>=3.1.5",
     "pandas>=2.3.3",
+    "pre-commit>=4.5.1",
     "psycopg2-binary>=2.9.11",
     "python-dotenv>=1.2.1",
     "requests>=2.32.5",
+    "ruff>=0.14.13",
     "tqdm>=4.67.1",
 ]
