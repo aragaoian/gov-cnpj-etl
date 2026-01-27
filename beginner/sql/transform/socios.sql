@@ -17,7 +17,7 @@ SELECT DISTINCT
     nome_socio::TEXT,
     NULLIF(cpf_cnpj_socio, '')::TEXT,
     NULLIF(qualificacao_socio, '')::INTEGER,
-    NULLIF(data_entrada_sociedade, '')::DATE,
+    parse_yyyymmdd_safe(data_entrada_sociedade),
     NULLIF(pais, '')::INTEGER,
     NULLIF(representante_legal, '')::TEXT,
     NULLIF(nome_representante, '')::TEXT,

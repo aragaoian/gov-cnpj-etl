@@ -1,3 +1,18 @@
+-- psycopg2.errors.ForeignKeyViolation: insert or update on table "estabelecimentos" violates foreign key constraint "pais_fk"
+-- DETAIL:  Key (pais)=(367) is not present in table "paises".
+-- Address issues with inactive countries
+INSERT INTO paises (codigo, descricao, ativo)
+SELECT DISTINCT
+    etblcm.pais::INTEGER,
+    'N/A',
+    false
+FROM staging.estabelecimentos AS etblcm
+LEFT JOIN paises
+    ON etblcm.pais::INTEGER = paises.codigo
+WHERE
+    paises.codigo IS NULL
+    AND etblcm.pais IS NOT NULL;
+
 INSERT INTO estabelecimentos (
     cnpj_basico,
     cnpj_ordem,
@@ -37,11 +52,11 @@ SELECT DISTINCT
     identificador_matriz_filial::SMALLINT,
     NULLIF(nome_fantasia, '')::TEXT,
     NULLIF(situacao_cadastral, '')::SMALLINT,
-    NULLIF(data_situacao_cadastral, '')::DATE,
+    parse_yyyymmdd_safe(data_situacao_cadastral),
     NULLIF(motivo_situacao_cadastral, '')::INTEGER,
     NULLIF(nome_cidade_exterior, '')::TEXT,
     NULLIF(pais, '')::INTEGER,
-    NULLIF(data_inicio_atividade, '')::DATE,
+    parse_yyyymmdd_safe(data_inicio_atividade),
     NULLIF(cnae_fiscal_principal, '')::INTEGER,
     NULLIF(cnae_fiscal_secundaria, '')::TEXT,
     NULLIF(tipo_logradouro, '')::TEXT,
@@ -60,7 +75,7 @@ SELECT DISTINCT
     NULLIF(fax, '')::TEXT,
     NULLIF(correio_eletronico, '')::TEXT,
     NULLIF(situacao_especial, '')::TEXT,
-    NULLIF(data_situacao_especial, '')::DATE
+    parse_yyyymmdd_safe(data_situacao_especial)
 FROM staging.estabelecimentos
 WHERE cnpj_basico IS NOT NULL
   AND cnpj_ordem IS NOT NULL

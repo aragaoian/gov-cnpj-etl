@@ -1,4 +1,3 @@
-from beginner.load_data import run_load
 from beginner.transform_data import run_transform
 from datetime import datetime
 

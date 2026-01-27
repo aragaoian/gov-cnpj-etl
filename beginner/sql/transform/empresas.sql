@@ -1,3 +1,17 @@
+-- Address issues with inactive qualifications
+INSERT INTO qualificacoes (codigo, descricao, ativo)
+SELECT DISTINCT
+    emp.qualificacao_responsavel::INTEGER,
+    'N/A',
+    false
+FROM staging.empresas AS emp
+LEFT JOIN qualificacoes AS qlf
+    ON emp.qualificacao_responsavel::INTEGER = qlf.codigo
+WHERE
+    qlf.codigo IS NULL
+    AND emp.qualificacao_responsavel IS NOT NULL;
+
+
 INSERT INTO empresas (cnpj_basico, razao_social, natureza_juridica, qualificacao_responsavel, capital_social, porte_empresa, ente_federativo_responsavel)
 SELECT DISTINCT
     cnpj_basico::CHAR(8),
@@ -16,4 +30,4 @@ SET
     qualificacao_responsavel = EXCLUDED.qualificacao_responsavel,
     capital_social = EXCLUDED.capital_social,
     porte_empresa = EXCLUDED.porte_empresa,
-    ente_federativo_responsavel = EXCLUDED.ente_federativo_responsavel
+    ente_federativo_responsavel = EXCLUDED.ente_federativo_responsavel;

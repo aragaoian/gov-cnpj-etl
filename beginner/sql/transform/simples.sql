@@ -2,11 +2,11 @@ INSERT INTO simples (cnpj_basico, opcao_simples, data_opcao_simples, data_exclus
 SELECT DISTINCT
     cnpj_basico::CHAR(8),
     NULLIF(opcao_simples, '')::CHAR(1),
-    NULLIF(data_opcao_simples, '')::DATE,
-    NULLIF(data_exclusao_simples, '')::DATE,
+    parse_yyyymmdd_safe(data_opcao_simples),
+    parse_yyyymmdd_safe(data_exclusao_simples),
     NULLIF(opcao_mei, '')::CHAR(1),
-    NULLIF(data_opcao_mei, '')::DATE,
-    NULLIF(data_exclusao_mei, '')::DATE
+    parse_yyyymmdd_safe(data_opcao_mei),
+    parse_yyyymmdd_safe(data_exclusao_mei)
 FROM staging.simples
 WHERE cnpj_basico IS NOT NULL
 ON CONFLICT (cnpj_basico) DO UPDATE

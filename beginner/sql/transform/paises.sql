@@ -1,3 +1,6 @@
+ALTER TABLE paises
+ADD COLUMN IF NOT EXISTS ativo BOOLEAN NOT NULL DEFAULT true;
+
 INSERT INTO paises (codigo, descricao)
 SELECT DISTINCT
     codigo::INTEGER,

@@ -1,3 +1,6 @@
+ALTER TABLE qualificacoes
+ADD COLUMN IF NOT EXISTS ativo BOOLEAN NOT NULL DEFAULT true;
+
 INSERT INTO qualificacoes (codigo, descricao)
 SELECT DISTINCT
     codigo::INTEGER,
