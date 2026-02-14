@@ -1,9 +1,9 @@
-ALTER TABLE socios
-  ADD CONSTRAINT cnpj_completo_unique
-  UNIQUE (cnpj_basico, nome_socio);
+-- This table does not have any natural primary keys
+-- So, there is no way to identify the identity of the column
+-- therefore making it impossible to update entrie reliably
 
 ALTER TABLE socios
-  ADD CONSTRAINT cnpj_basico_fk
+  ADD CONSTRAINT cnpj_basico_socios_fk
   FOREIGN KEY (cnpj_basico) REFERENCES empresas (cnpj_basico)
   ON DELETE RESTRICT ON UPDATE CASCADE;
 

@@ -4,7 +4,7 @@ import os
 
 
 BASE_DIRECTORY = os.getcwd()
-TRANSFORM_PATH = "beginner/sql/transform"
+TRANSFORM_PATH = "intermediate/sql/transform"
 CONSTRAINTS_PATH = "database/constraints"
 
 TRANSFORMS = {

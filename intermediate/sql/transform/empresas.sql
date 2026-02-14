@@ -1,3 +1,6 @@
+ALTER TABLE empresas
+ADD COLUMN IF NOT EXISTS ativo BOOLEAN NOT NULL DEFAULT true;
+
 -- Address issues with inactive qualifications
 INSERT INTO qualificacoes (codigo, descricao, ativo)
 SELECT DISTINCT

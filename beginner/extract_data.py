@@ -3,7 +3,7 @@ import zipfile
 import tempfile
 import io
 
-CNPJ_DATA_URL = "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj"
+CNPJ_DATA_URL = "https://arquivos.receitafederal.gov.br/index.php/s/YggdBLfdninEJX9"
 
 
 def run_extraction(

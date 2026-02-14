@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 
 """
     TODO
-    1. remove database_name, should go inside .env
+    1. Remove NullPool for QueuePool
+    2. Refactor __exit__ to deal with it safely
 """
 
 load_dotenv()

@@ -23,6 +23,8 @@ CREATE TABLE socios (
     representante_legal TEXT,
     nome_representante TEXT,
     qualificacao_representante INTEGER,
-    faixa_etaria SMALLINT
+    faixa_etaria SMALLINT,
+    ultima_versao_valida DATE
 );
+
 

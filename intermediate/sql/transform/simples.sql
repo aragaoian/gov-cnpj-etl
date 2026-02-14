@@ -1,3 +1,17 @@
+-- Address issues with inactive qualifications
+INSERT INTO empresas (cnpj_basico, razao_social, natureza_juridica, ativo)
+SELECT DISTINCT
+    sim.cnpj_basico::TEXT,
+    'N/A',
+    0,
+    false
+FROM staging.simples AS sim
+LEFT JOIN empresas AS emp
+    ON sim.cnpj_basico::TEXT = emp.cnpj_basico
+WHERE
+    emp.cnpj_basico IS NULL
+    AND sim.cnpj_basico IS NOT NULL;
+
 INSERT INTO simples (cnpj_basico, opcao_simples, data_opcao_simples, data_exclusao_simples, opcao_mei, data_opcao_mei, data_exclusao_mei)
 SELECT DISTINCT
     cnpj_basico::CHAR(8),
