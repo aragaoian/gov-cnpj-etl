@@ -4,8 +4,7 @@ from dotenv import load_dotenv
 
 """
     TODO
-    1. Remove NullPool for QueuePool
-    2. Refactor __exit__ to deal with it safely
+    1. Add a global connection to avoid creating multiples connections
 """
 
 load_dotenv()
@@ -37,6 +36,9 @@ class DatabaseManager:
             raise Exception(
                 f"Error while trying to open database connection. {e}"
             ) from e
+
+    def get_conn(self):
+        return self.connection
 
     def __enter__(self):
         self.open_connection()

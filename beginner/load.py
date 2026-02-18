@@ -1,12 +1,11 @@
-from beginner.extract_data import run_extraction
+from beginner.extract import run_extraction
 from database.session import DatabaseManager
-from enums.db_schemas import Schemas_
 from tqdm import tqdm
 
 
 def format_staging_insert_query(table_name: str) -> str:
     query = f"""
-        COPY {Schemas_.STAGING.value}.{table_name}
+        COPY staging.{table_name}
         FROM STDIN
         WITH (
             FORMAT csv, 
@@ -54,13 +53,13 @@ def run_load(year: int, month: int) -> None:
     3. simples
     4. socios
     """
-    insert_data_staging("cnaes", year, month)
-    insert_data_staging("empresas", year, month, 10, True)
+    # insert_data_staging("cnaes", year, month)
+    # insert_data_staging("motivos", year, month)
+    # insert_data_staging("municipios", year, month)
+    # insert_data_staging("naturezas", year, month)
+    # insert_data_staging("paises", year, month)
+    # insert_data_staging("qualificacoes", year, month)
+    # insert_data_staging("simples", year, month)
+    # insert_data_staging("empresas", year, month, 10, True)
     insert_data_staging("estabelecimentos", year, month, 10, True)
-    insert_data_staging("motivos", year, month)
-    insert_data_staging("municipios", year, month)
-    insert_data_staging("naturezas", year, month)
-    insert_data_staging("paises", year, month)
-    insert_data_staging("qualificacoes", year, month)
-    insert_data_staging("simples", year, month)
     insert_data_staging("socios", year, month, 10, True)
