@@ -1,8 +1,8 @@
-INSERT INTO motivos (codigo, descricao)
+INSERT INTO d_cnaes (codigo, descricao)
 SELECT DISTINCT
     codigo::INTEGER,
     NULLIF(UPPER(descricao), '')::TEXT
-FROM staging.motivos
+FROM staging.cnaes
 WHERE codigo IS NOT NULL
 ON CONFLICT (codigo) DO UPDATE
 SET descricao = EXCLUDED.descricao

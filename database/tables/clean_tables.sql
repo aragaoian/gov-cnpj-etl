@@ -8,14 +8,3 @@ TRUNCATE TABLE staging.paises;
 TRUNCATE TABLE staging.qualificacoes;
 TRUNCATE TABLE staging.simples;
 TRUNCATE TABLE staging.socios;
-
-TRUNCATE TABLE real.cnaes;
-TRUNCATE TABLE real.empresas;
-TRUNCATE TABLE real.estabelecimentos;
-TRUNCATE TABLE real.motivos;
-TRUNCATE TABLE real.municipios;
-TRUNCATE TABLE real.naturezas;
-TRUNCATE TABLE real.paises;
-TRUNCATE TABLE real.qualificacoes;
-TRUNCATE TABLE real.simples;
-TRUNCATE TABLE real.socios;

@@ -1,19 +1,21 @@
--- psycopg2.errors.ForeignKeyViolation: insert or update on table "estabelecimentos" violates foreign key constraint "pais_fk"
+-- psycopg2.errors.ForeignKeyViolation: insert or update on table "estabelecimentos" 
+-- violates foreign key constraint "pais_fk"
 -- DETAIL:  Key (pais)=(367) is not present in table "paises".
-INSERT INTO paises (codigo, descricao, ativo)
+
+INSERT INTO d_paises (codigo, descricao, ativo)
 SELECT DISTINCT
     TRIM(etblcm.pais)::INTEGER,
     'N/A',
     false
 FROM staging.estabelecimentos AS etblcm
-LEFT JOIN paises
+LEFT JOIN d_paises AS paises
     ON paises.codigo::TEXT = TRIM(etblcm.pais)
 WHERE
     paises.codigo IS NULL
     AND etblcm.pais IS NOT NULL
     AND TRIM(etblcm.pais) <> '';
 
-INSERT INTO estabelecimentos (
+INSERT INTO f_estabelecimentos (
     cnpj_basico,
     cnpj_ordem,
     cnpj_dv,

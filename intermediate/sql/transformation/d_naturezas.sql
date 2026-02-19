@@ -1,8 +1,8 @@
-INSERT INTO municipios (codigo, descricao)
+INSERT INTO d_naturezas (codigo, descricao)
 SELECT DISTINCT
     codigo::INTEGER,
     NULLIF(UPPER(descricao), '')::TEXT
-FROM staging.municipios
+FROM staging.naturezas
 WHERE codigo IS NOT NULL
 ON CONFLICT (codigo) DO UPDATE
 SET descricao = EXCLUDED.descricao

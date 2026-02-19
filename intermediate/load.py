@@ -5,6 +5,7 @@ from tqdm import tqdm
 
 def format_staging_insert_query(table_name: str) -> str:
     query = f"""
+        TRUNCATE staging.{table_name} CASCADE;
         COPY staging.{table_name}
         FROM STDIN
         WITH (

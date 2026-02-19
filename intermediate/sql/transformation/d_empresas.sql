@@ -1,21 +1,21 @@
-ALTER TABLE empresas
+ALTER TABLE d_empresas
 ADD COLUMN IF NOT EXISTS ativo BOOLEAN NOT NULL DEFAULT true;
 
 -- Address issues with inactive qualifications
-INSERT INTO qualificacoes (codigo, descricao, ativo)
+INSERT INTO d_qualificacoes (codigo, descricao, ativo)
 SELECT DISTINCT
     emp.qualificacao_responsavel::INTEGER,
     'N/A',
     false
 FROM staging.empresas AS emp
-LEFT JOIN qualificacoes AS qlf
+LEFT JOIN d_qualificacoes AS qlf
     ON emp.qualificacao_responsavel::INTEGER = qlf.codigo
 WHERE
     qlf.codigo IS NULL
     AND emp.qualificacao_responsavel IS NOT NULL;
 
 
-INSERT INTO empresas (cnpj_basico, razao_social, natureza_juridica, qualificacao_responsavel, capital_social, porte_empresa, ente_federativo_responsavel)
+INSERT INTO d_empresas (cnpj_basico, razao_social, natureza_juridica, qualificacao_responsavel, capital_social, porte_empresa, ente_federativo_responsavel)
 SELECT DISTINCT
     cnpj_basico::CHAR(8),
     NULLIF(razao_social, '')::TEXT,

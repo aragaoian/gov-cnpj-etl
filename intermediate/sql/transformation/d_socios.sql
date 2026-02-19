@@ -1,4 +1,4 @@
-INSERT INTO socios (
+INSERT INTO d_socios (
     cnpj_basico,
     identificador_socio,
     nome_socio,

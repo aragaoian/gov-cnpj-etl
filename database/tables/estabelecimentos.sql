@@ -30,38 +30,3 @@ CREATE TABLE staging.estabelecimentos (
     situacao_especial TEXT,
     data_situacao_especial TEXT
 );
-
-CREATE TABLE estabelecimentos (
-    cnpj_basico CHAR(8),
-    cnpj_ordem CHAR(4),
-    cnpj_dv CHAR(2),
-    identificador_matriz_filial SMALLINT,
-    nome_fantasia TEXT,
-    situacao_cadastral SMALLINT,
-    data_situacao_cadastral DATE,
-    motivo_situacao_cadastral INTEGER,
-    nome_cidade_exterior TEXT,
-    pais INTEGER,
-    data_inicio_atividade DATE,
-    cnae_fiscal_principal INTEGER,
-    cnae_fiscal_secundaria TEXT,
-    tipo_logradouro TEXT,
-    logradouro TEXT,
-    numero TEXT,
-    complemento TEXT,
-    bairro TEXT,
-    cep CHAR(8),
-    uf CHAR(2),
-    municipio INTEGER,
-    ddd1 CHAR(2),
-    telefone1 TEXT,
-    ddd2 CHAR(2),
-    telefone2 TEXT,
-    ddd_fax CHAR(2),
-    fax TEXT,
-    correio_eletronico TEXT,
-    situacao_especial TEXT,
-    data_situacao_especial DATE,
-    PRIMARY KEY (cnpj_basico, cnpj_ordem, cnpj_dv)
-);
-
