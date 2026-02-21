@@ -1,5 +1,5 @@
 CREATE TABLE f_estabelecimentos (
-    cnpj_basico CHAR(8),
+    cnpj_basico CHAR(8) PRIMARY KEY,
     cnpj_ordem CHAR(4),
     cnpj_dv CHAR(2),
     identificador_matriz_filial SMALLINT,
@@ -28,7 +28,6 @@ CREATE TABLE f_estabelecimentos (
     fax TEXT,
     correio_eletronico TEXT,
     situacao_especial TEXT,
-    data_situacao_especial DATE,
-    PRIMARY KEY (cnpj_basico, cnpj_ordem, cnpj_dv)
+    data_situacao_especial DATE
 );
 
