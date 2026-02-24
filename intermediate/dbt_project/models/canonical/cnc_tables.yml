@@ -1,0 +1,74 @@
+version: 2
+models:
+  - name: d_cnaes
+    description: "Classificação Nacional de Atividades Êconomicas"
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_nul
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_motivos
+    description: "Motivos Jurídicos"
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_nul
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_municipios
+    description: "Municípios das UFs"
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_nul
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_naturezas
+    description: "Naturezas Jurídicas"
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_nul
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_paises
+    description: "Países"
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_nul
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_qualificacoes
+    description: "Qualificações do responsável e dos sócios"
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_nul
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
