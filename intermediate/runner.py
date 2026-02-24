@@ -1,8 +1,8 @@
 from datetime import datetime
 from airflow.sdk import dag, task
 
-from intermediate.load import run_load
-from intermediate.transform import run_transform
+from intermediate.services.load import run_load
+from intermediate.services.transform import run_transform
 
 
 class Intermediate:
@@ -32,3 +32,5 @@ class Intermediate:
         @task()
         def validate():
             pass
+
+        extract_and_load() >> transform() >> validate()
