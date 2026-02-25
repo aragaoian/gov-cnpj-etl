@@ -9,7 +9,7 @@ Try running the following commands:
 - dbt init intermediate --skip-profile-setup
 
 Define $PATH to avoid flaging the profiles dir every time
-- export DBT_PROFILES_DIR=../gov-cnpj-etl/intermediate/.dbt
+- export DBT_PROFILES_DIR=/home/ian/personal-projects/gov-cnpj-etl/intermediate/.dbt
 
 
 ### Resources:
