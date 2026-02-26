@@ -72,6 +72,48 @@ models:
         data_tests:
           - not_null
 
+  - name: d_datas
+    description: Dimensão para as datas
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_null
+      - name: data_completa
+        data_tests:
+          - unique
+          - not_null
+      - name: ano
+        data_tests:
+          - not_null
+      - name: trimestre
+        data_tests:
+          - not_null
+      - name: mes
+        data_tests:
+          - not_null
+      - name: dia
+        data_tests:
+          - not_null
+      - name: nome_mes
+        data_tests:
+          - not_null
+      - name: nome_dia
+        data_tests:
+          - not_null
+      - name: dia_de_semana
+        data_tests:
+          - not_null
+      # Still need to find a reliable source
+      # to download and insert the holidays into
+      # the dim    
+      # - name: feriado
+      #   data_tests:
+      #     - relationships:
+      #         field: codigo
+      #         to: ref('d_feriados')
+      
+
   - name: d_empresas
     description: Informações sobre a matriz
     columns:
