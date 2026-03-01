@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: staging
+    schema: staging
+    tables:
+      - name: cnaes
+      - name: empresas
+      - name: estabelecimentos
+      - name: socios
+      - name: simples
+      - name: paises
+      - name: municipios
+      - name: qualificacoes
+      - name: naturezas
+      - name: motivos

@@ -1,0 +1,15 @@
+dbt_project:
+  outputs:
+    dev:
+      connect_timeout: 10
+      dbname: gov_cnpj_etl
+      host: localhost
+      keepalives_idle: 0
+      password: postgres
+      port: 5432
+      retries: 3
+      schema: public
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev

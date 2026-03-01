@@ -1,0 +1,224 @@
+version: 2
+models:
+  - name: d_cnaes
+    description: Classificação Nacional de Atividades Êconomicas
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_null
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_motivos
+    description: Motivos Jurídicos
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_nul
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_municipios
+    description: Municípios das UFs
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_null
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_naturezas
+    description: Naturezas Jurídicas
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_null
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_paises
+    description: Países
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_null
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_qualificacoes
+    description: Qualificações do responsável e dos sócios
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_null
+      - name: descricao
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_datas
+    description: Dimensão para as datas
+    columns:
+      - name: codigo
+        data_tests:
+          - unique
+          - not_null
+      - name: data_completa
+        data_tests:
+          - unique
+          - not_null
+      - name: ano
+        data_tests:
+          - not_null
+      - name: trimestre
+        data_tests:
+          - not_null
+      - name: mes
+        data_tests:
+          - not_null
+      - name: dia
+        data_tests:
+          - not_null
+      - name: nome_mes
+        data_tests:
+          - not_null
+      - name: nome_dia
+        data_tests:
+          - not_null
+      - name: dia_de_semana
+        data_tests:
+          - not_null
+      # Still need to find a reliable source
+      # to download and insert the holidays into
+      # the dim    
+      # - name: feriado
+      #   data_tests:
+      #     - relationships:
+      #         field: codigo
+      #         to: ref('d_feriados')
+      
+
+  - name: d_empresas
+    description: Informações sobre a matriz
+    columns:
+      - name: cnpj_basico
+        data_tests:
+          - unique
+          - not_null
+      - name: razao_social
+        data_tests:
+          - not_null
+      - name: natureza_juridica
+        data_tests:
+          - not_null
+          - relationships:
+              field: codigo
+              to: ref('d_naturezas')
+      - name: qualificacao_responsavel
+        data_tests:
+          - relationships:
+              field: codigo
+              to: ref('d_qualificacoes')
+      - name: capital_social
+      - name: porte_empresa
+        data_tests:
+          - accepted_values:
+              values: ['00', '01', '03', '05']
+      - name: ente_federativo_responsavel
+      - name: ativo
+        data_tests:
+          - not_null
+
+  - name: d_simples
+    description: Dados do Simples Nacional/MEI
+    columns:
+      - name: cnpj_basico
+        data_tests:
+          - unique
+          - not_null
+      - name: opcao_simples
+        data_tests:
+          - accepted_values:
+              values: ['S', 'N']
+      - name: data_opcao_simples_key
+        data_tests:
+          - not_null
+      - name: data_exclusao_simples_key
+        data_tests:
+          - not_null
+      - name: opcao_mei
+        data_tests:
+          - accepted_values:
+              values: ['S', 'N']
+      - name: data_opcao_mei_key
+        data_tests:
+          - not_null
+      - name: data_exclusao_mei
+        data_tests:
+          - not_null
+
+  - name: d_socios
+    description: Tabela contendo as informações dos sócios
+    columns:
+      - name: cnpj_basico
+        data_tests:
+          - not_null
+      - name: identificador_socio
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - [1, 2, 3]
+      - name: nome_socio
+        data_tests:
+          - not_null
+      - name: cpf_cnpj_socio
+      - name: qualificacao_socio
+        data_tests:
+          - relationships:
+              field: codigo
+              to: ref('d_qualificacoes')
+      - name: data_entrada_sociedade_key
+        data_tests:
+          - not_null
+      - name: pais
+        data_tests:
+          - relationships:
+              field: codigo
+              to: ref('d_paises')
+      - name: representante_legal
+        data_tests:
+          - not_null
+      - name: nome_representante
+        data_tests:
+          - not_null
+      - name: qualificacao_representante
+        data_tests:
+          - relationships:
+              field: codigo
+              to: ref('d_qualificacoes')
+      - name: faixa_etaria
+        data_tests:
+          - accepted_values:
+              values:
+                - [1, 2, 3, 4, 5, 6, 7, 8, 0]
+      - name: ultima_versao_valida_key
+        data_tests:
+          - not_null
+
