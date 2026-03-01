@@ -7,6 +7,7 @@ Try running the following commands:
 - dbt test
 - dbt init intermediate --profiles-dir .dbt --skip-profile-setup
 - dbt init intermediate --skip-profile-setup
+- dbt run --select canonical.*
 
 Define $PATH to avoid flaging the profiles dir every time
 - export DBT_PROFILES_DIR=/home/ian/personal-projects/gov-cnpj-etl/intermediate/.dbt

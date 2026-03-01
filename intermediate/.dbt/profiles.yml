@@ -9,7 +9,7 @@ dbt_project:
       port: 5432
       retries: 3
       schema: public
-      threads: 1
+      threads: 4
       type: postgres
       user: postgres
   target: dev
